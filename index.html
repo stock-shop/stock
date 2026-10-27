@@ -150,10 +150,9 @@
 
         <div class="section-title">📞 Зв'язок з магазином:</div>
 
-        <button class="copy-btn btn-tg" style="text-align: center;" onclick="copyText('+380955566678', 'Номер Telegram менеджера скопійовано!')">
-            ✈️ СКОПІЮВАТИ ТЕЛЕГРАМ МЕНЕДЖЕР
-            <span style="color: #d4edda; text-align: center;">+380 95 556 66 78</span>
-        </button>
+        <a href="https://t.me/stockshop5" class="action-btn btn-tg" target="_blank">
+            ✈️ ТЕЛЕГРАМ МЕНЕДЖЕР
+        </a>
 
         <button class="copy-btn btn-viber" style="text-align: center;" onclick="copyText('+380955566678', 'Номер Viber скопійовано!')">
             📱 СКОПІЮВАТИ VIBER
@@ -180,33 +179,4 @@
     function copyText(text, message) {
         if (navigator.clipboard && window.isSecureContext) {
             navigator.clipboard.writeText(text).then(() => { showToast(message); }).catch(() => { fallbackCopy(text, message); });
-        } else {
-            fallbackCopy(text, message);
-        }
-    }
-    function fallbackCopy(text, message) {
-        var textArea = document.createElement("textarea");
-        textArea.value = text;
-        textArea.style.position = "fixed";
-        textArea.style.opacity = "0";
-        document.body.appendChild(textArea);
-        textArea.focus();
-        textArea.select();
-        try {
-            document.execCommand('copy');
-            showToast(message);
-        } catch (err) {
-            showToast('Не вдалося скопіювати');
-        }
-        document.body.removeChild(textArea);
-    }
-    function showToast(msg) {
-        var toast = document.getElementById("toast");
-        toast.textContent = msg;
-        toast.classList.add("show");
-        setTimeout(function() { toast.classList.remove("show"); }, 2000);
-    }
-</script>
-
-</body>
-</html>
+        } else
