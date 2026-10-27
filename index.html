@@ -154,4 +154,58 @@
             ✈️ ТЕЛЕГРАМ МЕНЕДЖЕР
         </a>
 
-        <button class="copy-btn btn-viber" style="text-align: center;"
+        <button class="copy-btn btn-viber" style="text-align: center;" onclick="copyText('+380955566678', 'Номер Viber скопійовано!')">
+            📱 СКОПІЮВАТИ VIBER
+            <span style="color: #e2dcff; text-align: center;">+380 95 556 66 78</span>
+        </button>
+
+        <a href="https://t.me/+eJ0aEsiL6i01OWUy" class="action-btn btn-tg" target="_blank">
+            📢 ТЕЛЕГРАМ КАНАЛ
+        </a>
+    </div>
+
+    <div class="tiktok-hint">
+        Для користувачів TikTok: якщо кнопки «Відкрити» або «Скопіювати» не працюють — натисніть три крапки вгорі праворуч → «Відкрити в браузері».
+    </div>
+
+    <div class="footer">
+        Stock Shop <span class="heart" style="font-size: 10px;">❤️</span> 2026
+    </div>
+</div>
+
+<div id="toast">Скопійовано!</div>
+
+<script>
+    function copyText(text, message) {
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(text).then(() => { showToast(message); }).catch(() => { fallbackCopy(text, message); });
+        } else {
+            fallbackCopy(text, message);
+        }
+    }
+    function fallbackCopy(text, message) {
+        var textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        textArea.style.opacity = "0";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        try {
+            document.execCommand('copy');
+            showToast(message);
+        } catch (err) {
+            showToast('Не вдалося скопійовати');
+        }
+        document.body.removeChild(textArea);
+    }
+    function showToast(msg) {
+        var toast = document.getElementById("toast");
+        toast.textContent = msg;
+        toast.classList.add("show");
+        setTimeout(function() { toast.classList.remove("show"); }, 2000);
+    }
+</script>
+
+</body>
+</html>
