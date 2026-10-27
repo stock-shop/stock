@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Stock shop - Оплата</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            padding: 24px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container { width: 100%; max-width: 380px; }
+        h2 { text-align: center; margin: 0 0 4px 0; letter-spacing: 1.5px; font-size: 22px; font-weight: 700; }
+        .subtitle { text-align: center; color: #8e8e93; font-size: 13px; margin-bottom: 24px; }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+        .heart {
+            display: inline-block;
+            color: #ff3b30;
+            animation: pulse 1.5s infinite;
+            margin: 0 4px;
+        }
+
+        .card {
+            background-color: #1c1c1e;
+            border-radius: 14px;
+            padding: 18px;
+            margin-bottom: 16px;
+            border: 1px solid #2c2c2e;
+        }
+        .card-title { font-size: 15px; margin-bottom: 12px; font-weight: 600; color: #ffffff; }
+        .info-text { font-size: 13px; margin-bottom: 14px; color: #a1a1a6; line-height: 1.4; }
+        
+        .copy-btn, .action-btn {
+            display: block;
+            width: 100%;
+            border: none;
+            border-radius: 12px;
+            padding: 14px 16px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            box-sizing: border-box;
+            transition: transform 0.1s, opacity 0.2s;
+            -webkit-tap-highlight-color: transparent;
+            margin-bottom: 10px;
+        }
+        .copy-btn {
+            background-color: #2e7d52;
+            color: white;
+            text-align: left;
+        }
+        .copy-btn span {
+            display: block;
+            font-size: 13px;
+            font-weight: 400;
+            color: #d4edda;
+            margin-top: 4px;
+        }
+        .copy-btn:active, .action-btn:active { transform: scale(0.98); opacity: 0.9; }
+
+        .btn-tg { background-color: #0088cc; color: #ffffff; }
+        .btn-viber { background-color: #7360f2; color: #ffffff; }
+        
+        .section-title {
+            font-size: 14px;
+            color: #b0b0b5;
+            margin: 16px 0 8px 0;
+            font-weight: 500;
+        }
+        
+        .tiktok-hint {
+            font-size: 12px;
+            color: #8e8e93;
+            text-align: center;
+            margin-top: 20px;
+            line-height: 1.4;
+            padding: 0 10px;
+            border-left: 2px solid #ff3b30;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #636366;
+            margin-top: 24px;
+        }
+
+        #toast {
+            visibility: hidden;
+            background-color: rgba(50, 50, 50, 0.95);
+            color: #fff;
+            text-align: center;
+            border-radius: 20px;
+            padding: 10px 20px;
+            position: fixed;
+            bottom: 40px;
+            z-index: 10;
+            font-size: 13px;
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+        #toast.show { visibility: visible; opacity: 1; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2><span class="heart">❤️</span> STOCK SHOP <span class="heart">❤️</span></h2>
+    <div class="subtitle">Магазин одягу та взуття</div>
+
+    <div class="card">
+        <div class="card-title">💎 Реквізити для оплати <span class="heart" style="font-size: 12px;">❤️</span></div>
+        <div class="info-text">
+            Отримувач: <strong style="color: #fff;">Глова Олеся</strong><br>
+            ⬇️ Натисніть кнопку, щоб скопіювати
+        </div>
+        <button class="copy-btn" onclick="copyText('4441111005972991', 'Номер карти скопійовано!')">
+            💳 СКОПІЮВАТИ НОМЕР КАРТИ
+            <span>4441 1110 0597 2991</span>
+        </button>
+    </div>
+
+    <div class="card">
+        <div class="card-title">📦 Після оплати <span class="heart" style="font-size: 12px;">❤️</span></div>
+        <div class="info-text">
+            Надішліть менеджеру скріншот квитанції про успішну оплату та заповніть шаблон:
+        </div>
+        
+        <button class="copy-btn" onclick="copyText('ПІБ: \nНаселений пункт: \nВідділення НП: \nТелефон отримувача: ', 'Шаблон скопійовано!')">
+            🤝 СКОПІЮВАТИ ШАБЛОН
+            <span style="font-size: 11px; line-height: 1.4; opacity: 0.9;">
+                ПІБ<br>Населений пункт<br>Відділення НП<br>Телефон отримувача
+            </span>
+        </button>
+
+        <div class="section-title">📞 Зв'язок з магазином:</div>
+
+        <a href="https://t.me/stockshop5" class="action-btn btn-tg" target="_blank">
+            ✈️ ТЕЛЕГРАМ МЕНЕДЖЕР
+        </a>
+
+        <button class="copy-btn btn-viber" style="text-align: center;" onclick="copyText('+380955566678', 'Номер Viber скопійовано!')">
+            📱 СКОПІЮВАТИ VIBER
+            <span style="color: #e2dcff; text-align: center;">+380 95 556 66 78</span>
+        </button>
+
+        <a href="https://t.me/stockshop5" class="action-btn btn-tg" target="_blank">
+            📢 ТЕЛЕГРАМ КАНАЛ
+        </a>
+    </div>
+
+    <div class="tiktok-hint">
+        Для користувачів TikTok: якщо кнопки «Відкрити» или «Скопіювати» не працюють — натисніть три крапки вгорі праворуч → «Відкрити в браузері».
+    </div>
+
+    <div class="footer">
+        Stock Shop <span class="heart" style="font-size: 10px;">❤️</span> 2026
+    </div>
+</div>
+
+<div id="toast">Скопійовано!</div>
+
+<script>
+    function copyText(text, message) {
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(text).then(() => { showToast(message); }).catch(() => { fallbackCopy(text, message); });
+        } else {
+            fallbackCopy(text, message);
+        }
+    }
+    function fallbackCopy(text, message) {
+        var textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        textArea.style.opacity = "0";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        try {
+            document.execCommand('copy');
+            showToast(message);
+        } catch (err) {
+            showToast('Не вдалося скопіювати');
+        }
+        document.body.removeChild(textArea);
+    }
+    function showToast(msg) {
+        var toast = document.getElementById("toast");
+        toast.textContent = msg;
+        toast.classList.add("show");
+        setTimeout(function() { toast.classList.remove("show"); }, 2000);
+    }
+</script>
+
+</body>
+</html>
